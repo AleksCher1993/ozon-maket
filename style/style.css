@@ -13,7 +13,9 @@
 body {
   font-family: "GTEestiProText", Arial, sans-serif;
 }
-
+body.locked{
+  overflow: hidden;
+}
 button {
   outline: transparent;
 }

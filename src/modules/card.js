@@ -13,6 +13,7 @@ const cart = () => {
 
   openModal.addEventListener("click", () => {
     modal.style.display = "flex";
+    document.body.classList.add('locked')
     const card = localStorage.getItem("card")
       ? JSON.parse(localStorage.getItem("card"))
       : [];
@@ -25,6 +26,7 @@ const cart = () => {
 
   cartClose.addEventListener("click", () => {
     modal.style.display = "";
+    document.body.classList.remove('locked')
   });
 
   goodsBtn.addEventListener("click", (e) => {
@@ -34,7 +36,7 @@ const cart = () => {
       const card = localStorage.getItem("card")
         ? JSON.parse(localStorage.getItem("card"))
         : [];
-      console.log(card.length + 1);
+      
       const goodsItem = goods.find((elem) => {
         return elem.id == cardId;
       });
@@ -63,15 +65,22 @@ const cart = () => {
   });
 
   cartConfirm.addEventListener("click", () => {
-    const card = localStorage.getItem("card")
+    if (localStorage.getItem("card")) {  
+      const card = localStorage.getItem("card")
       ? JSON.parse(localStorage.getItem("card"))
       : [];
-    postDate(card).then(() => {
-      localStorage.removeItem("card");
-    });
-    renderCard([]);
-    cartTotal.innerHTML = 0;
-    counter.innerHTML = 0;
-  });
+      postDate(card).then(() => {
+        
+        localStorage.removeItem("card");
+      });
+      renderCard([]);
+      cartTotal.innerHTML = 0;
+      counter.innerHTML = 0;
+      alert("Спасибо за покупку =)")
+      modal.style.display = "";
+    }else {
+      modal.style.display = "";
+      alert("Добавьте товар!")}
+  })
 };
 export default cart;

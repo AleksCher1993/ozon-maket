@@ -5,6 +5,13 @@ const postDate = (data) => {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
-  }).then((response) => response.json());
+  }).then((response) =>
+  {
+    if (response.ok) {
+      
+      response.json()
+    }else throw new Error("Произошла ошибка =(")
+  }
+   ).catch(error=> alert(error))
 };
 export default postDate;
