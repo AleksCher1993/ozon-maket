@@ -78,9 +78,11 @@ const cart = () => {
       counter.innerHTML = 0;
       alert("Спасибо за покупку =)")
       modal.style.display = "";
+      document.body.classList.remove('locked')
     }else {
       modal.style.display = "";
       alert("Добавьте товар!")}
+      document.body.classList.remove('locked')
   })
 };
 export default cart;
